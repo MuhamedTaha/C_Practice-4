@@ -8,29 +8,27 @@
 
 int password();
 
-void searchName(int i);
+void searchName();
 
 
 int main()
-{   char personel[num_personel][name_length]={"Mohamed","Ahmed","Maher","Noha","Hend"};
-    char Salary[num_personel]={1000,1100,1200,1021,1023};
-    int k=1;
+{
+   int k=1;
     k=password();
 
-    while(k==0)
+    while (k!= 27)
     {
-    printf("lskdjfkj");
-    k=1;
+        searchName();
+        printf("\n\nFor another employee press any key\npress ESC to end");
+        k=getch();
+
     }
-
-
-
     return 0;
 }
 
 int password()
-{   int i=0,k=1;
-    char  pass[passwordLength]="okay123";
+{   int i=0,k=-1;
+    char  pass[passwordLength]="okay";
     char passcorrect[passwordLength];
     do
     {
@@ -42,6 +40,41 @@ int password()
 
     i++;
     }while(i<3);
-    if (k!=0) printf("\nSorry you didn't enter the correct passward");
+    if (k!=0)
+    {
+        printf("\nSorry you didn't enter the correct passward");
+        k=27;
+    }
     return k;
+}
+
+void searchName()
+{   char personel[num_personel][name_length]={"Mohamed","Ahmed","Maher","Noha","Hend"};
+    int Salary[num_personel]={1000,1100,1200,1021,1023};
+    int i,k=-1,j=-1;
+    char nameTake[name_length];
+    system("cls");
+    printf("Enter the employee name : ");
+    scanf("%s",nameTake);
+    for (i=0;i<num_personel;i++)
+    {
+        k=strcmpi(nameTake,personel[i]);
+        if (k==0)
+        {
+            j=i;   // the variable j will not change until the user enter a valid name
+            break;
+        }
+
+    }
+    if (j==-1)
+    {
+        printf("\n\n\tNot found ");
+    }
+    else
+    {
+        printf("\nThe salary of %s = %d LE",personel[j],Salary[j]);
+
+    }
+
+
 }
